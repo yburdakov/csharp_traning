@@ -33,7 +33,7 @@ namespace WebAddressbookTests
         {
             get
             {
-                return Header;
+                return header;
             }
             set
             {
@@ -44,7 +44,7 @@ namespace WebAddressbookTests
         {
             get
             {
-                return Footer;
+                return footer;
             }
             set
             {

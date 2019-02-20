@@ -49,7 +49,7 @@ namespace WebAddressbookTests
             InitNewGroupCreation();
             GroupData group = new GroupData("aaa");
             group.Header = "ddd";
-            group.Footer = "fff";
+            group.Footer = "fff";         
             FillGroupForm(group);
             SubmitGroupCreation();
             ReturnToGroupsPage();
