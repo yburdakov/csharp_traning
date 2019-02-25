@@ -93,7 +93,7 @@ namespace WebAddressbookTests
             manager.Navigator.GotoHomePage();
 
             SelectContact(v);
-            InitContactModification();
+            InitContactModification(v);
             FillContactForm(newcontact);
             SubmitContactModification();
 
@@ -107,10 +107,9 @@ namespace WebAddressbookTests
             return this;
         }
 
-        public ContactHelper InitContactModification()
+        public ContactHelper InitContactModification(int index)
         {
-            driver.FindElement(By.XPath("//img[@alt='Edit']")).Click();
-            return this;
+            driver.FindElement(By.XPath("(//img[@alt='Edit'])["+ index +"]")).Click(); return this;
         }
 
         public ContactHelper Remove(int v)
