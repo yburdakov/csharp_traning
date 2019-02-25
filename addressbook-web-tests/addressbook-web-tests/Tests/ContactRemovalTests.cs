@@ -9,7 +9,7 @@ namespace WebAddressbookTests
     [TestFixture]
     public class ContactRemovalTests : TestBase
     {
-        [Test] // Not finished yet
+        [Test]
         public void ContactRemovalTest()
         {
             appManager.Contacts.Remove(1);

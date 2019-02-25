@@ -12,7 +12,7 @@ namespace WebAddressbookTests
         [Test]
         public void ContactCreationTest()
         {
-            NewContactData newcontact = new NewContactData("AAA", "BBB", "CCC")
+            ContactData contact = new ContactData("AAA", "BBB", "CCC")
             {
                 Nickname = "ddd",
                 Title = "ddd",
@@ -37,7 +37,7 @@ namespace WebAddressbookTests
                 Aday = "15"
             };
 
-            appManager.Contacts.Create(newcontact);
+            appManager.Contacts.Create(contact);
         }
     }
 }
