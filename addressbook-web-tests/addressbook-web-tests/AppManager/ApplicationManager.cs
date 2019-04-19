@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
@@ -9,7 +10,7 @@ using OpenQA.Selenium.Support.UI;
 
 namespace WebAddressbookTests
 {
-   public class ApplicationManager
+    public class ApplicationManager
     {
         protected IWebDriver driver;
         protected string baseURL;
@@ -19,26 +20,31 @@ namespace WebAddressbookTests
         protected GroupHelper groupHelper;
         protected ContactHelper contactHelper;
 
-        public ApplicationManager()
-        {
-        driver = new FirefoxDriver();
-        baseURL = "http://localhost/addressbook/";
+        public static ThreadLocal<ApplicationManager> appManager = new ThreadLocal<ApplicationManager>();
 
-        loginHelper = new LoginHelper(this);
-        navigator = new NavigationHelper(this, baseURL);
-        groupHelper = new GroupHelper(this);
-        contactHelper = new ContactHelper(this);
+        private ApplicationManager()
+        {
+            driver = new FirefoxDriver();
+            baseURL = "http://localhost/addressbook/";
+
+            loginHelper = new LoginHelper(this);
+            navigator = new NavigationHelper(this, baseURL);
+            groupHelper = new GroupHelper(this);
+            contactHelper = new ContactHelper(this);
         }
 
-        public IWebDriver Driver
+        public static ApplicationManager GetInstance()
         {
-            get
+            if (!appManager.IsValueCreated)
             {
-                return driver;
+                ApplicationManager newInstance = new ApplicationManager();
+                newInstance.Navigator.GotoHomePage();
+                appManager.Value = newInstance;
             }
+            return appManager.Value;
         }
 
-        public void Stop()
+        ~ApplicationManager()
         {
             try
             {
@@ -48,7 +54,18 @@ namespace WebAddressbookTests
             {
                 // Ignore errors if unable to close the browser
             }
+
         }
+
+
+        public IWebDriver Driver
+        {
+            get
+            {
+                return driver;
+            }
+        }
+
         public LoginHelper Auth
         {
             get
