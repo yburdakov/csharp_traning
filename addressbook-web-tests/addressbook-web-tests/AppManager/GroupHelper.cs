@@ -52,6 +52,7 @@ namespace WebAddressbookTests
             return this;
         }
 
+
         public GroupHelper RemoveGroup()
         {
             driver.FindElement(By.Name("delete")).Click();
