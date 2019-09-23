@@ -3,6 +3,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using NUnit.Framework;
+using System.Collections.Generic;
 
 
 namespace WebAddressbookTests
@@ -19,7 +20,8 @@ namespace WebAddressbookTests
                 Footer = null
             };
 
-            appManager.Groups.Modify(1, newData);
+            appManager.Groups.Modify(0, newData);
+
         }
     }
 }

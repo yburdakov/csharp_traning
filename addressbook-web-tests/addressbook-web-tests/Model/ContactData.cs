@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace WebAddressbookTests
 {
-    public class ContactData
+    public class ContactData : IEquatable<ContactData>
     {
         private string firstname = "";
         private string middlename = "";
@@ -33,12 +34,32 @@ namespace WebAddressbookTests
         private string aday = "";
         private string amonth = "";
 
-        public ContactData(string firstname, string middlename, string lastname)
+        public ContactData(string firstname, string lastname)
         {
             this.firstname = firstname;
-            this.middlename = middlename;
             this.lastname = lastname;
         }
+
+        public bool Equals(ContactData other)
+        {
+            if (Object.ReferenceEquals(other, null))
+            {
+                return false;
+            }
+            if (Object.ReferenceEquals(this, other))
+            {
+                return true;
+            }
+            return Tr == other.Tr; // как проверить элемент состоящий из двух полей?
+
+        }
+
+        public int GetHashCode()
+        {
+            return Lastname.GetHashCode(); // как поступать еслиэлемент из двух полей?
+        }
+
+
         public string Firstname
         {
             get

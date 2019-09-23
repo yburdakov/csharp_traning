@@ -2,6 +2,7 @@
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
+using System.Collections.Generic;
 using NUnit.Framework;
 
 namespace WebAddressbookTests
@@ -12,7 +13,15 @@ namespace WebAddressbookTests
         [Test]
         public void GroupRemovalTest()
         {
-            appManager.Groups.Remove(1);
+            List<GroupData> oldGroups = appManager.Groups.GetGroupList();
+
+            appManager.Groups.Remove(0);
+
+            List<GroupData> newGroups = appManager.Groups.GetGroupList();
+
+            oldGroups.RemoveAt(0);
+
+            Assert.AreEqual(oldGroups, newGroups);
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using NUnit.Framework;
+using System.Collections.Generic;
 
 
 namespace WebAddressbookTests
@@ -13,8 +14,9 @@ namespace WebAddressbookTests
         [Test]
         public void ContactModificationTest()
         {
-            ContactData newcontact = new ContactData("MMM", "MMM", "MMM")
+            ContactData newcontact = new ContactData("MMM", "MMM")
             {
+                Middlename = "ccc",
                 Nickname = "MMM",
                 Title = "MMM",
                 Company = "MMM",
