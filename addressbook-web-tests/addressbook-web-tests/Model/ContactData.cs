@@ -50,13 +50,14 @@ namespace WebAddressbookTests
             {
                 return true;
             }
-            return Tr == other.Tr; // как проверить элемент состоящий из двух полей?
-
+            bool isFirstNameEqual = firstname == other.firstname;
+            bool isLastNameEqual = lastname == other.lastname;
+            return isFirstNameEqual && isLastNameEqual;         
         }
 
-        public int GetHashCode()
+        public new int GetHashCode()
         {
-            return Lastname.GetHashCode(); // как поступать еслиэлемент из двух полей?
+            return Lastname.GetHashCode() + 13 * Firstname.GetHashCode(); // как поступать еслиэлемент из двух полей?
         }
 
 

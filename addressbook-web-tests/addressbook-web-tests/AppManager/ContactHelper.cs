@@ -75,7 +75,10 @@ namespace WebAddressbookTests
             ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("tr"));
             foreach (IWebElement element in elements)
             {
-                contacts.Add(new ContactData(element.Text, element.Text));
+                var fields = element.FindElements(By.CssSelector("td"));
+                var firstName = fields[1].Text;
+                var lastName = fields[2].Text;
+                contacts.Add(new ContactData(firstName, lastName));
             }
             return contacts;
         }

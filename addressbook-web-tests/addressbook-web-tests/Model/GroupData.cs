@@ -27,7 +27,10 @@ namespace WebAddressbookTests
             {
                 return true;
             }
-            return Name == other.Name;
+            var isEqual = Name == other.Name;
+            var check = false;
+
+            return isEqual && check;
         }
 
         public int GetHashCode()
